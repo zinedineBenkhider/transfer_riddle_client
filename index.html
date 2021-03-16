@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Transfer Ridlle Solver</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-replace-svg="nest"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/manipulate_dom.js"></script>
+    <script src="scripts/solution_animation.js"></script>
+    <script src="scripts/requests_listeners.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>Transfer Ridlle Solver</h1>
+        <h5>Optimal Solution</h5>
+    </div>
+    <div class="container">
+        <h3 class="mt-5 mb-3 d-flex justify-content-center">What You Can Do?</h3>
+        <div class="row">
+            <div class="col-sm-3 card text-center  p-0">
+                <h5 class="card-header">
+                    Configuration
+                </h5>
+                <div class="card-body">
+                    <p class="card-text">Create a custom or random configuration and get its solution</p>
+                </div>
+            </div>
+            <div class="col-sm-4 card text-center offset-1 p-0">
+                <h5 class="card-header">
+                    Step By Step
+                </h5>
+                <div class="card-body">
+                    <p class="card-text">Display solution step by step with a time interval of your choice</p>
+                </div>
+            </div>
+            <div class="col-sm-3 card text-center offset-1 p-0">
+                <h5 class="card-header">
+                    All Steps
+                </h5>
+                <div class="card-body">
+                    <p class="card-text">Display all steps of solution at once</p>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="mt-5 mb-3 d-flex justify-content-center">Riddle Configuration</h5>
+        <form class="card mb-0">
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="tankASize" class="col-sm-2 col-form-label">Tank A *</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" class="form-control" id="tankASize" placeholder="Tank A Size"
+                            required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tankBSize" class="col-sm-2 col-form-label">Tank B *</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" class="form-control" id="tankBSize" placeholder="Tank B Size"
+                            required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="expectedQuantity" class="col-sm-2 col-form-label">Quantity *</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" class="form-control" id="expectedQuantity"
+                            placeholder="Expected Quantity" required>
+                    </div>
+                </div>
+                <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Display</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                                    value="stepByStep" checked>
+                                <label class="form-check-label" for="gridRadios2">
+                                    Step By Step
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                                    value="allSteps">
+                                <label class="form-check-label" for="gridRadios1">
+                                    All At Once
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group row intervalTimeField">
+                    <label for="intervalTime" class="col-sm-2 col-form-label">Time Interval</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="1" max="100" value="3" class="form-control" id="intervalTime"
+                            placeholder="Number Of Seconds" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button id="solutionBtn" class="btn btn-success m-2" type="submit">Solution</button>
+                    <button onclick="randomConfig()" class="btn btn-primary m-2" type="button">Random</button>
+                    <button onclick="clearAll()" class="btn btn-secondary  m-2" type="button">Clear</button>
+                </div>
+            </div>
+        </form>
+        <div class="spinner d-flex justify-content-center mt-3">
+            <div class="spinner spinner-grow text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner spinner-grow text-danger" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner spinner-grow text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner spinner-grow text-info" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div id="solution" class="mt-1"></div>
+    </div>
+</body>
+
+</html>
