@@ -9,5 +9,5 @@
    - Afficher toutes les étapes de la solution à la fois
 
 - Exécution:
-      - Remote: https://transfer-riddle-solver.herokuapp.com/index.html
-      - Local: Lancement du fichier index.html
+   - Remote: https://transfer-riddle-solver.herokuapp.com/index.html
+   - Local: Lancement du fichier index.html
