@@ -4,6 +4,14 @@ function displayAllAtOnce(steps) {
     for (var i = 0; i < steps.length; i++) {
         createStepContent(steps[i], i + 1);
     }
+    var tankDivSelector;
+    if(steps[steps.length-1].tankOneContent==expectedQuantity){
+        tankDivSelector="#tankA-step-"+(steps.length);
+    }
+    else{
+        tankDivSelector="#tankB-step-"+(steps.length);
+    }
+    makeGreenTank(tankDivSelector,steps.length);
 }
 
 //show step by step solution with time interval
@@ -46,7 +54,7 @@ function getNextStep(currentTank, nextTank, currentStepNb) {
 //fill or empty tank
 function fillOrEmptyfTank(tankDivSelector, currentStepTankContent, nextStepTankContent, tankSize, isTransfer) {
     if (nextStepTankContent == expectedQuantity) {//this tank contain the expected quantity
-        changeColorTankContainSol(tankDivSelector);
+        makeGreenTankTimeOut(tankDivSelector);
     }
     var isFillFromTap = !isTransfer && currentStepTankContent == 0;
     var isEmpty = !isTransfer && !isFillFromTap;
@@ -88,22 +96,30 @@ function fillOrEmptyfTank(tankDivSelector, currentStepTankContent, nextStepTankC
     }
 }
 
-
 //Make green liters of tank that contain expected quantity
-//do it at the end of step
-function changeColorTankContainSol(tankDivSelector) {
+//Used in all at once mode
+function makeGreenTank(tankDivSelector,nbStep) {
     var changeColorTimeOutId = setTimeout(function () {
         var tankDiv = $(tankDivSelector);
         for (i = 0; i < expectedQuantity; i++) {
             tankDiv.children().eq(i).css("background-color", solutionColor);
         }
-        var indexState = tankDivSelector == "#tankA-step-1" ? 0 : 1;
-        var tankState = $("#solution-content").children().eq(1).children().eq(indexState);
+        var indexState = tankDivSelector=="#tankA-step-"+nbStep ? 0 : 1;
+        var tankState = $("#tanks-state-"+nbStep).children(indexState);
         if (indexState == 1) {
             tankState.removeClass("text-danger");
         }
         tankState.addClass("text-success");
 
+    }, stepIntervalTime);
+    timeouts.push(changeColorTimeOutId);
+}
+
+//Make green liters of tank that contain expected quantity
+//Used in step by step mode
+function makeGreenTankTimeOut(tankDivSelector) {
+    var changeColorTimeOutId = setTimeout(function () {
+        makeGreenTank(tankDivSelector,1)
     }, stepIntervalTime);
     timeouts.push(changeColorTimeOutId);
 }
