@@ -58,7 +58,7 @@ function createStepContent(step, stepnb) {
     var resDiv = $("#solution-content");
     var stepNumber = $("<p class='font-weight-bold  row d-flex justify-content-center'>Step n° <span>" + stepnb + "</span></p>");
     resDiv.append(stepNumber);
-    var tanksState = $("<div class='row d-flex align-items-end justify-content-center'></div>");
+    var tanksState = $("<div id='tanks-state-"+stepnb+"' class='row d-flex align-items-end justify-content-center'></div>");
     var tankAState = $("<div>" + step.tankOneContent + "/" + tankASize + "</div>");
     tankAState.addClass("col-4 mb-3 mr-3 d-flex justify-content-center font-weight-bold text-primary");
     var tankBState = $("<div>" + step.tankTwoContent + "/" + tankBSize + "</div>");
