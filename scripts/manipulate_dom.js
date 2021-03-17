@@ -1,4 +1,3 @@
-
 //Create message to inform if the solution exists
 function displayAlertMsg(msg, type) {
     var resDiv = $("#solution");
