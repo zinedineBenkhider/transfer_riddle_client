@@ -16,6 +16,7 @@ function reqSolExistListener() {
         sendRequest("solution", tankASize, tankBSize, expectedQuantity, reqSolutionStepsListener);
     }
     else {
+        window.location.href = '#solution';
         executionTimeEnd = performance.now();
         displayAlertMsg("There is no solution for this configuration. Server response: " + (executionTimeEnd - executionTimeBeg) + " microseconds", "alert-danger");
         $("#clearBtn").show();
@@ -35,6 +36,7 @@ function reqSolutionStepsListener() {
     else {
         displayStepByStep(solutionSteps);
     }
+    window.location.href = '#solution-content';
     $("#clearBtn").show();
     $(".spinner").hide();
 }

@@ -1,27 +1,36 @@
 //Display all steps at once without a time interval
 function displayAllAtOnce(steps) {
     createSolutionHeader(false);
+    var firstStep = { "tankOneContent": 0, "tankTwoContent": 0 };
+    steps.unshift(firstStep);
     for (var i = 0; i < steps.length; i++) {
         createStepContent(steps[i], i + 1);
     }
     var tankDivSelector;
-    if(steps[steps.length-1].tankOneContent==expectedQuantity){
-        tankDivSelector="#tankA-step-"+(steps.length);
+    if (steps[steps.length - 1].tankOneContent == expectedQuantity) {
+        tankDivSelector = "#tankA-step-" + (steps.length);
     }
-    else{
-        tankDivSelector="#tankB-step-"+(steps.length);
+    else {
+        tankDivSelector = "#tankB-step-" + (steps.length);
     }
-    makeGreenTank(tankDivSelector,steps.length);
+    makeGreenTank(tankDivSelector, steps.length);
 }
 
 //show step by step solution with time interval
 function displayStepByStep(steps) {
     createSolutionHeader(true);
     //add step 0
-    var firestStep = { "tankOneContent": 0, "tankTwoContent": 0 };
-    steps.unshift(firestStep);
-    createStepContent(firestStep, 1);
+    var firstStep = { "tankOneContent": 0, "tankTwoContent": 0 };
+    steps.unshift(firstStep);
     var k = 1;
+    if (k == steps.length) {
+        createStepContent(firstStep, 0);
+        makeGreenTank("#tankA-step-0", 0);
+        makeGreenTank("#tankB-step-0", 0);
+    }
+    else {
+        createStepContent(firstStep, 1);
+    }
     while (k < steps.length) {
         displayNextStepTimeOut(steps, k);
         k++;
@@ -98,28 +107,24 @@ function fillOrEmptyfTank(tankDivSelector, currentStepTankContent, nextStepTankC
 
 //Make green liters of tank that contain expected quantity
 //Used in all at once mode
-function makeGreenTank(tankDivSelector,nbStep) {
-    var changeColorTimeOutId = setTimeout(function () {
-        var tankDiv = $(tankDivSelector);
-        for (i = 0; i < expectedQuantity; i++) {
-            tankDiv.children().eq(i).css("background-color", solutionColor);
-        }
-        var indexState = tankDivSelector=="#tankA-step-"+nbStep ? 0 : 1;
-        var tankState = $("#tanks-state-"+nbStep).children(indexState);
-        if (indexState == 1) {
-            tankState.removeClass("text-danger");
-        }
-        tankState.addClass("text-success");
-
-    }, stepIntervalTime);
-    timeouts.push(changeColorTimeOutId);
+function makeGreenTank(tankDivSelector, nbStep) {
+    var tankDiv = $(tankDivSelector);
+    for (i = 0; i < expectedQuantity; i++) {
+        tankDiv.children().eq(i).css("background-color", solutionColor);
+    }
+    var tankName = tankDivSelector == "#tankA-step-" + nbStep ? "A" : "B";
+    var tankState = $("#tank" + tankName + "-state-" + nbStep);
+    if (tankName == "B") {
+        tankState.removeClass("text-danger");
+    }
+    tankState.addClass("text-success");
 }
 
 //Make green liters of tank that contain expected quantity
 //Used in step by step mode
 function makeGreenTankTimeOut(tankDivSelector) {
     var changeColorTimeOutId = setTimeout(function () {
-        makeGreenTank(tankDivSelector,1)
+        makeGreenTank(tankDivSelector, 1)
     }, stepIntervalTime);
     timeouts.push(changeColorTimeOutId);
 }

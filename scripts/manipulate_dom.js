@@ -56,12 +56,12 @@ function createStepContent(step, stepnb) {
     var tankAHeight = tankASize * literHeight + "px";
     var tankBHeight = tankBSize * literHeight + "px";
     var resDiv = $("#solution-content");
-    var stepNumber = $("<p class='font-weight-bold  row d-flex justify-content-center'>Step n° <span>" + stepnb + "</span></p>");
+    var stepNumber = $("<p class='font-weight-bold row d-flex justify-content-center'>Step n° <span>" + stepnb + "</span></p>");
     resDiv.append(stepNumber);
-    var tanksState = $("<div id='tanks-state-"+stepnb+"' class='row d-flex align-items-end justify-content-center'></div>");
-    var tankAState = $("<div>" + step.tankOneContent + "/" + tankASize + "</div>");
+    var tanksState = $("<div id='tanks-state-" + stepnb + "' class='row d-flex align-items-end justify-content-center'></div>");
+    var tankAState = $("<div id='tankA-state-" + stepnb + "'>" + step.tankOneContent + "/" + tankASize + "</div>");
     tankAState.addClass("col-4 mb-3 mr-3 d-flex justify-content-center font-weight-bold text-primary");
-    var tankBState = $("<div>" + step.tankTwoContent + "/" + tankBSize + "</div>");
+    var tankBState = $("<div id='tankB-state-" + stepnb + "'>" + step.tankTwoContent + "/" + tankBSize + "</div>");
     tankBState.addClass("col-4 mb-3 d-flex justify-content-center font-weight-bold text-danger");
     tanksState.append(tankAState, tankBState);
     resDiv.append(tanksState);
@@ -91,7 +91,7 @@ function createStepContent(step, stepnb) {
     tanksDiv.append(tankADiv);
     //create tank B div
     var tankBDiv = $("<div id='tankB-step-" + stepnb + "'></div>");
-    tankBDiv.addClass("col-4 d-flex flex-column-reverse border-3 border rounded-bottom border-top-0 border-danger mr-3 ml-3 p-0");
+    tankBDiv.addClass("col-4 d-flex flex-column-reverse border-3 border rounded-bottom border-top-0 border-danger  ml-3 p-0");
     tankBDiv.css({ "backgroundColor": emptyTankColor, "height": tankBHeight });
     //create children of tank B div that represent tank liters 
     for (var i = 0; i < tankBSize; i++) {

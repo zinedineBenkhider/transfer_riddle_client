@@ -27,6 +27,7 @@ window.onload = (event) => {
     });
     $("form").on('submit', function (event) {
         event.preventDefault();//disable submit event
+
         solution();
     });
 };
@@ -69,7 +70,7 @@ function randomConfig() {
     solution();
 }
 function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+    return Math.floor(Math.random() * max) + 1;
 }
 
 
