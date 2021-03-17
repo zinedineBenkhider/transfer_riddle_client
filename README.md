@@ -7,5 +7,5 @@
 - Versions:
 	- BootStrap: v4
 - Exécution:
-      Remote: https://transfer-riddle-solver.herokuapp.com/index.html
-   		Local: Lancement du fichier index.html
+      - Remote: https://transfer-riddle-solver.herokuapp.com/index.html
+      - Local: Lancement du fichier index.html
