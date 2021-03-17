@@ -1,5 +1,5 @@
 # Transfer Riddle Solver
-- Téchnologies:
+- Technologies:
 	- BootStrap v4
 	- JavaScript
 	- Html 5
