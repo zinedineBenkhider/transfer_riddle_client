@@ -49,9 +49,9 @@ function displayNextStepTimeOut(steps, index) {
 function getNextStep(currentTank, nextTank, currentStepNb) {
     var stepNbSpan = $("#solution-content p span");
     stepNbSpan.text(currentStepNb);
-    var tankAState = $("#solution-content").children().eq(1).children().eq(0);
+    var tankAState = $("#tankA-state-1");
     tankAState.text(nextTank.tankOneContent + "/" + tankASize);
-    var tankBState = $("#solution-content").children().eq(1).children().eq(1);
+    var tankBState = $("#tankB-state-1");
     tankBState.text(nextTank.tankTwoContent + "/" + tankBSize);
     var tankADivSelector = "#tankA-step-1";
     var tankBDivSelector = "#tankB-step-1";

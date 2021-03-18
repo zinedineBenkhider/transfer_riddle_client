@@ -61,8 +61,10 @@ function createStepContent(step, stepnb) {
     var tankAState = $("<div id='tankA-state-" + stepnb + "'>" + step.tankOneContent + "/" + tankASize + "</div>");
     tankAState.addClass("col-4 mb-3 mr-3 d-flex justify-content-center font-weight-bold text-primary");
     var tankBState = $("<div id='tankB-state-" + stepnb + "'>" + step.tankTwoContent + "/" + tankBSize + "</div>");
-    tankBState.addClass("col-4 mb-3 d-flex justify-content-center font-weight-bold text-danger");
-    tanksState.append(tankAState, tankBState);
+    tankBState.addClass("col-4 mb-3 ml-3 d-flex justify-content-center font-weight-bold text-danger");
+    var offsetStateLeftDiv=$("<div class='offset-1'></div>");
+    var offsetStateRightDiv=$("<div class='offset-1'></div>");
+    tanksState.append(offsetStateLeftDiv,tankAState, tankBState,offsetStateRightDiv);
     resDiv.append(tanksState);
     var tanksDiv = $("<div id='step-" + stepnb + "'></div>");
     tanksDiv.addClass("row d-flex align-items-end justify-content-center mb-5");
@@ -76,7 +78,7 @@ function createStepContent(step, stepnb) {
 
     //create tank A div
     var tankADiv = $("<div id='tankA-step-" + stepnb + "'></div>");
-    tankADiv.addClass("col-4 d-flex flex-column-reverse border border-3 rounded-bottom border-top-0 border-primary mr-3 ml-3 p-0");
+    tankADiv.addClass("col-4 d-flex flex-column-reverse border border-3 rounded-bottom border-top-0 border-primary mr-3 p-0");
     tankADiv.css({ "backgroundColor": emptyTankColor, "height": tankAHeight });
     //create children of tank A div that represent tank liters
     for (var i = 0; i < tankASize; i++) {
